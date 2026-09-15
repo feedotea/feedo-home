@@ -14,7 +14,7 @@ FEEDO MUSEUM 官網首頁（feedomuseum.com），報紙頭版「The Feedo Times�
 - `index.html`：首頁（樣式寫在同一個檔案裡）
 - `404.html`：找不到頁面時顯示
 - `privacy.html`：隱私權說明（網站收集的資料有變動時要更新，例如拍貼機打開「存進我的房間」）
-- `images/`：斑點狗圖片、`og.jpg`（LINE／FB 分享預覽圖）、從舊官網 feedo.com.tw 取來的照片（`cup-hand` 頭版、`moby-mixer` 招牌奶蓋、`moby-sketch` 時間軸草圖、`shop-drawing` 來店插畫）
+- `images/`：斑點狗圖片、`og.jpg`（LINE／FB 分享預覽圖）、從舊官網 feedo.com.tw 取來的照片（`cup-hand` 頭版、`foam-pour` 招牌奶蓋（IG 限動截圖裁掉文字）、`moby-sketch` 時間軸草圖、`shop-drawing` 來店插畫）
 - `CNAME`：GitHub Pages 自訂網域
 - `robots.txt`、`sitemap.xml`：給搜尋引擎
 
