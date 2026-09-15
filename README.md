@@ -13,7 +13,7 @@ FEEDO MUSEUM 官網首頁（feedomuseum.com），報紙頭版「The Feedo Times�
 ## 檔案
 - `index.html`：首頁（樣式寫在同一個檔案裡）
 - `404.html`：找不到頁面時顯示
-- `images/`：吉祥物圖片、`og.jpg`（LINE／FB 分享預覽圖）
+- `images/`：斑點狗圖片、`og.jpg`（LINE／FB 分享預覽圖）
 - `CNAME`：GitHub Pages 自訂網域
 - `robots.txt`、`sitemap.xml`：給搜尋引擎
 
