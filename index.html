@@ -83,6 +83,7 @@
   .btn.pri:hover{background:var(--stamp);border-color:var(--stamp);}
   .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
   .btns.center{justify-content:center;}
+  .photo{filter:grayscale(1) contrast(1.05);}
 
   /* ===== 頭版 ===== */
   .lead{display:grid;gap:32px;padding:40px 0;border-bottom:1px solid var(--rule);}
@@ -92,7 +93,7 @@
   .nb{white-space:nowrap;}
   .deck{margin-top:18px;font-size:18px;color:var(--ink-2);max-width:26em;}
   .lead-fig{border:1px solid var(--rule);background:var(--paper-2);padding:8px;max-width:400px;width:100%;justify-self:center;}
-  .lead-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;filter:grayscale(1) contrast(1.05);}
+  .lead-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:70% center;filter:grayscale(1) contrast(1.05);}
 
   /* ===== 今日版面 ===== */
   .editions{display:grid;gap:14px;}
@@ -128,6 +129,10 @@
   .feature{border:1.5px solid var(--ink);background:var(--paper-2);padding:18px 20px;margin-bottom:22px;}
   .feature h3{font-size:20px;font-weight:900;color:var(--stamp);}
   .feature p{color:var(--ink-2);margin-top:4px;}
+  .feature .feature-quote{margin-top:10px;font-weight:600;color:var(--ink);}
+  .feature.has-img{display:grid;gap:14px 20px;align-items:center;}
+  @media(min-width:560px){.feature.has-img{grid-template-columns:150px 1fr;}}
+  .feature-img{width:100%;max-width:150px;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--ink);}
 
   /* ===== Moby ===== */
   .moby{display:grid;gap:28px;align-items:center;}
@@ -147,6 +152,24 @@
   .moby-tag{margin-top:6px;}
   .timeline li.soon span{color:var(--ink);font-weight:900;}
   .timeline li.soon::before{background:var(--paper);border:2px solid var(--stamp);}
+  .tl-img{width:120px;margin-top:8px;border:1px solid var(--ink);}
+
+  /* ===== 常見問題 ===== */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-group+.faq-group{margin-top:36px;}
+  .faq-group h3{font-family:var(--data);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--stamp);border-bottom:2px solid var(--ink);padding-bottom:6px;}
+  .faq details{border-bottom:1px dotted #8B857C;}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;font-weight:900;font-size:18px;line-height:1.5;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";font-family:var(--data);font-weight:400;font-size:20px;flex:0 0 auto;}
+  .faq details[open] summary::after{content:"−";}
+  .faq summary:focus-visible{outline:3px solid var(--stamp);outline-offset:2px;}
+  .faq .ans{padding-bottom:16px;font-size:16px;color:var(--ink-2);}
+  .faq .ans p+p{margin-top:6px;}
+  .tiers-t{width:100%;border-collapse:collapse;margin:8px 0;font-size:15px;}
+  .tiers-t th,.tiers-t td{text-align:left;padding:6px 8px 6px 0;border-bottom:1px dotted #8B857C;}
+  .tiers-t th{font-weight:600;font-size:14px;color:var(--mute);}
+  .tiers-t td:nth-child(2){font-family:var(--data);white-space:nowrap;}
 
   /* ===== 來店資訊 ===== */
   .visit{display:grid;gap:26px;}
@@ -156,6 +179,7 @@
   .vrow a{display:inline-block;padding:4px 0;margin:-4px 0;}
   .map{border:1.5px solid var(--ink);background:var(--paper-2);min-height:320px;}
   .map iframe{display:block;width:100%;height:100%;min-height:320px;border:0;filter:grayscale(.55) contrast(1.05);}
+  .visit-fig{margin-top:26px;max-width:320px;border:1px solid var(--rule);}
 
   /* ===== 報尾 ===== */
   .foot{padding-block:28px 44px;text-align:center;font-size:15px;color:var(--mute);}
@@ -175,6 +199,7 @@
       <a href="#teas">本期茶單</a>
       <a href="#about">理念</a>
       <a href="#moby">Moby</a>
+      <a href="#faq">問答</a>
       <a href="#visit">來店</a>
       <a class="nav-cta" href="https://order.feedomuseum.com/">飲品訂購 &rarr;</a>
     </nav>
@@ -194,7 +219,7 @@
       </div>
     </div>
     <figure class="lead-fig">
-      <img src="images/hero-mascot.jpg" alt="FEEDO 的斑點狗在店門口端著茶迎客" width="816" height="1456">
+      <img src="images/cup-hand.jpg" alt="手拿一杯 FEEDO 茶飲，午後的光照在杯身上" width="1200" height="800">
     </figure>
   </section>
 
@@ -232,9 +257,13 @@
   <!-- 茶單精選 -->
   <section id="teas" class="sec" aria-labelledby="teas-title">
     <h2 id="teas-title" class="sec-title">本期茶單</h2>
-    <div class="feature">
-      <h3>招牌奶蓋</h3>
-      <p>不用奶蓋粉。以奶油乳酪為基底，加一點鹽提味，低溫打發出剛剛好的滑順；鹹甜的對比，讓茶的風味更清亮。</p>
+    <div class="feature has-img">
+      <img class="feature-img photo" src="images/moby-mixer.jpg" alt="Moby 娃娃坐在打奶蓋的鋼盆旁" width="600" height="900" loading="lazy">
+      <div>
+        <h3>招牌奶蓋</h3>
+        <p>我們不使用奶蓋粉，堅持以奶油乳酪為基底，加入鹽、煉乳與鮮乳，在低溫的狀態下打發出不多不少、剛剛好的滑順度。鹹甜的對比，讓單茶的風味更加清亮、鮮明。</p>
+        <p class="feature-quote">「鮮奶茶是乳化的溫柔，奶蓋則是層次的提煉。」</p>
+      </div>
     </div>
     <div class="teas">
       <article class="tea"><h3>青心烏龍</h3><span class="price">$60</span><p>高山上，清冷的花香</p></article>
@@ -243,6 +272,8 @@
       <article class="tea"><h3>台東紅烏龍</h3><span class="price">$50</span><p>熟果蜜香，琥珀色的溫度</p></article>
       <article class="tea"><h3>炭焙烏龍</h3><span class="price">$60</span><p>龍眼木炭火，沉穩收尾</p></article>
       <article class="tea"><h3>小葉紅茶</h3><span class="price">$45</span><p>天生帶蜜，不加糖也甜</p></article>
+      <article class="tea"><h3>茉莉綠茶</h3><span class="price">$50</span><p>五次窨製，茉莉香氣透進茶骨</p></article>
+      <article class="tea"><h3>伯爵茶</h3><span class="price">$45</span><p>佛手柑的柑橘香，換個心情</p></article>
     </div>
     <div class="btns center">
       <a class="btn pri" href="https://order.feedomuseum.com/">看完整茶單</a>
@@ -254,12 +285,15 @@
   <section id="about" class="sec" aria-labelledby="about-title">
     <h2 id="about-title" class="sec-title">品牌理念</h2>
     <blockquote class="motto">用最理性的座標，<br>餵養最感性的日常。</blockquote>
-    <p class="about-text">每支茶的沖泡時間與溫度都不同。我們沒有自動煮茶機，在時間、溫度與水之間，用手感一次次調出「剛剛好」的比例。</p>
+    <p class="about-text">「我的每支茶，沖泡的時間與溫度都是不同的。我沒有自動煮茶機，因為機器缺乏掌控頻率的靈魂，我更享受這些手感的變化。就像人生，沒有哪一天是完全一樣的。」<br><small>—— 籌備手記</small></p>
     <ul class="philo">
       <li><h3>時間</h3><p>依發酵與揉捻，細細加減沖泡時間</p></li>
       <li><h3>溫度</h3><p>每支茶，都有自己剛剛好的溫度</p></li>
       <li><h3>水</h3><p>用手感調出比例，不交給機器</p></li>
     </ul>
+    <div class="btns center">
+      <a class="btn" href="https://order.feedomuseum.com/story.html#manifesto">閱讀完整故事 &rarr;</a>
+    </div>
   </section>
 
   <!-- Moby -->
@@ -276,13 +310,129 @@
         <p>Moby 是我們家的狗狗。什麼都好奇、什麼都想聞聞看，主人在哪都要跟在腳邊。</p>
         <ol class="timeline">
           <li><time>2025.03.20</time><span>Moby 出生</span></li>
-          <li><time>2026.04.01</time><span>第一款 Moby 自家設計商品，從草圖到成品耗時半年</span></li>
+          <li><time>2026.04.01</time><span>第一款 Moby 自家設計商品，從草圖到成品耗時半年</span><img class="tl-img" src="images/moby-sketch.jpg" alt="Moby 娃娃的設計草圖" width="495" height="700" loading="lazy"></li>
           <li><time>2026.06.19</time><span>狗狗杯套門市發售，同步推出穿衣服限定版（共四色）與拍貼紀念照活動</span></li>
           <li><time>2026.08.15</time><span>Moby 手繪插畫貼紙首發</span></li>
           <li class="soon"><time>2026.09 中旬</time><span>新一批 Moby 即將到貨</span></li>
         </ol>
         <p class="moby-tag">帶著 Moby 出門，標記 <a href="https://www.instagram.com/feedomuseum">@feedomuseum</a>，你的街拍可能登上下一期 Feedo Times。</p>
       </div>
+    </div>
+  </section>
+
+  <!-- 常見問題：規則要和 claim／order 網站同步 -->
+  <section id="faq" class="sec" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="sec-title">常見問題</h2>
+    <div class="faq">
+
+      <div class="faq-group">
+        <h3>狗狗杯套號碼牌</h3>
+        <details>
+          <summary>狗狗杯套怎麼買？</summary>
+          <div class="ans"><p>門市不現場販售。請先到 <a href="https://claim.feedomuseum.com/">狗狗杯套登記</a> 用 LINE 登入登記，拿到條碼後，當天憑條碼到門市購買。</p></div>
+        </details>
+        <details>
+          <summary>每天都會開放登記嗎？</summary>
+          <div class="ans"><p>不是每天都有。有新一批杯套時才開放，開放時間與數量會先在 Instagram <a href="https://www.instagram.com/feedomuseum">@feedomuseum</a> 公告。</p></div>
+        </details>
+        <details>
+          <summary>可以幫朋友登記或代購嗎？</summary>
+          <div class="ans"><p>可以。到店出示條碼掃描即可，不限本人。</p></div>
+        </details>
+        <details>
+          <summary>登記了但當天沒去，隔天可以買嗎？</summary>
+          <div class="ans"><p>不行。條碼只限登記當天營業時間內使用，逾時失效。</p></div>
+        </details>
+        <details>
+          <summary>多久可以再登記一次？</summary>
+          <div class="ans"><p>同一個 LINE 帳號登記後 3 日內不能再登記。</p></div>
+        </details>
+        <details>
+          <summary>條碼不見了怎麼辦？</summary>
+          <div class="ans"><p><b>登記完成的頁面請務必截圖保存</b>，購買時出示條碼最快。萬一真的沒截到，可以到門市告知登記時填的姓名或手機號碼，由店員協助查詢。</p></div>
+        </details>
+      </div>
+
+      <div class="faq-group">
+        <h3>訂購與取茶</h3>
+        <details>
+          <summary>可以現場點嗎？一定要預訂嗎？</summary>
+          <div class="ans"><p>可以直接到門市現場點。<a href="https://order.feedomuseum.com/">線上預訂</a>適合想先訂好、到店直接取茶的人。</p></div>
+        </details>
+        <details>
+          <summary>線上預訂要多早？</summary>
+          <div class="ans"><p>請在取茶或外送的前一天 17:00 前送出。來不及的話，當天可以來電 <a href="tel:+88662208282">06-2208282</a> 訂購。</p></div>
+        </details>
+        <details>
+          <summary>訂了想修改或取消？</summary>
+          <div class="ans"><p>請在前一天來電 <a href="tel:+88662208282">06-2208282</a> 或透過 <a href="https://line.me/R/ti/p/@121iekum">LINE 官方帳號</a>告知。取茶當天早上 8:00 後，無法取消或修改。</p></div>
+        </details>
+        <details>
+          <summary>奶蓋可以去冰嗎？</summary>
+          <div class="ans"><p>不行，奶蓋品項只能選 3 分冰或 5 分冰。加奶蓋 +$30，凍頂烏龍與青心烏龍不加奶蓋。</p></div>
+        </details>
+      </div>
+
+      <div class="faq-group">
+        <h3>外送與團購</h3>
+        <details>
+          <summary>有外送嗎？哪幾天？</summary>
+          <div class="ans"><p>有。週一、週三到週五外送，送達時段 11:00–16:00，線上可預約 4 週內的日期。</p></div>
+        </details>
+        <details>
+          <summary>外送範圍與低消？</summary>
+          <div class="ans">
+            <p>以門市為起點，依 Google 地圖路線距離計算：</p>
+            <div style="overflow-x:auto">
+              <table class="tiers-t">
+                <thead><tr><th>距離</th><th>滿額</th><th>參考地點</th></tr></thead>
+                <tbody>
+                  <tr><td>0.5 公里內</td><td>$150</td><td>台南孔廟</td></tr>
+                  <tr><td>1 公里內</td><td>$280</td><td>赤崁樓、藍晒圖、五妃街</td></tr>
+                  <tr><td>1.5 公里內</td><td>$420</td><td>台南火車站</td></tr>
+                  <tr><td>2 公里內</td><td>$550</td><td>台南公園</td></tr>
+                  <tr><td>2.5 公里內</td><td>$700</td><td></td></tr>
+                  <tr><td>3 公里內</td><td>$850</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>3 公里以外請先私訊 LINE 或來電詢問。</p>
+          </div>
+        </details>
+        <details>
+          <summary>怎麼付款？</summary>
+          <div class="ans"><p>門市只收現金，沒有 LINE Pay 與刷卡。外送需先付款，可付現金或轉帳，店家確認訂單後會與你聯繫。</p></div>
+        </details>
+        <details>
+          <summary>公司要訂很多杯，怎麼揪團？</summary>
+          <div class="ans"><p>到 <a href="https://order.feedomuseum.com/">線上點單</a> 按「公司揪團」，把連結分享到公司群組，同事各自用手機點。截止後由發起人填好預訂資料，一次送出。</p></div>
+        </details>
+        <details>
+          <summary>可以開發票或統編嗎？</summary>
+          <div class="ans"><p>本店不開立發票，可以開立有統一編號的收據，訂購時請告知統編。</p></div>
+        </details>
+      </div>
+
+      <div class="faq-group">
+        <h3>其他</h3>
+        <details>
+          <summary>營業時間？</summary>
+          <div class="ans"><p>11:00–18:00，每週二公休。臨時異動以 Instagram 公告為準。</p></div>
+        </details>
+        <details>
+          <summary>可以帶寵物嗎？店裡有座位嗎？</summary>
+          <div class="ans"><p>歡迎帶寵物來。店內沒有座位，以外帶為主。</p></div>
+        </details>
+        <details>
+          <summary>MOBY'S ROOM 是什麼？</summary>
+          <div class="ans"><p>用 LINE 登入的 <a href="https://pet.feedomuseum.com/">收藏房間</a>，買過的杯套都會收進你的房間。</p></div>
+        </details>
+        <details>
+          <summary>拍貼機的照片會被上傳嗎？</summary>
+          <div class="ans"><p>不會。照片只存在你的手機裡，網站只記錄使用了哪一款模板。</p></div>
+        </details>
+      </div>
+
     </div>
   </section>
 
@@ -300,6 +450,9 @@
           <a class="btn pri" href="https://www.google.com/maps/search/?api=1&amp;query=臺南市中西區友愛街24-1號">Google 地圖</a>
           <a class="btn" href="https://order.feedomuseum.com/">飲品訂購</a>
         </div>
+        <figure class="visit-fig">
+          <img src="images/shop-drawing.jpg" alt="FEEDO 店面手繪插畫" width="861" height="900" loading="lazy">
+        </figure>
       </div>
       <div class="map">
         <iframe title="FEEDO MUSEUM 位置地圖" src="https://www.google.com/maps?q=臺南市中西區友愛街24-1號&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
