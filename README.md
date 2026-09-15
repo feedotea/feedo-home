@@ -1,6 +1,6 @@
 # feedo-home
 
-FEEDO MUSEUM 菲多官網首頁（feedomuseum.com），報紙頭版「The Feedo Times」風格，作為各子網站的入口。
+FEEDO MUSEUM 官網首頁（feedomuseum.com），報紙頭版「The Feedo Times」風格，作為各子網站的入口。
 
 | 子網站 | 用途 |
 |---|---|
