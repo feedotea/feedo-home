@@ -95,6 +95,14 @@
   .lead-fig{border:1px solid var(--rule);background:var(--paper-2);padding:8px;max-width:400px;width:100%;justify-self:center;}
   .lead-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:70% center;filter:grayscale(1) contrast(1.05);}
 
+  /* ===== 最新消息 ===== */
+  .news{list-style:none;max-width:760px;margin:0 auto;border-top:2px solid var(--ink);}
+  .news li{display:grid;grid-template-columns:110px 1fr;gap:4px 18px;padding:16px 0;border-bottom:1px dotted #8B857C;}
+  @media(max-width:560px){.news li{grid-template-columns:1fr;}}
+  .news time{font-family:var(--data);font-size:14px;color:var(--stamp);padding-top:3px;}
+  .news h3{font-size:18px;font-weight:900;line-height:1.5;}
+  .news p{font-size:15.5px;color:var(--ink-2);margin-top:2px;}
+
   /* ===== 今日版面 ===== */
   .editions{display:grid;gap:14px;}
   @media(min-width:640px){.editions{grid-template-columns:1fr 1fr;}}
@@ -195,6 +203,7 @@
     <div class="meta-row"><span>台南 · 中西區</span><span id="today"></span></div>
     <h1 class="mast">The Feedo Times</h1>
     <nav class="nav" aria-label="主選單">
+      <a href="#news">消息</a>
       <a href="#editions">版面</a>
       <a href="#teas">本期茶單</a>
       <a href="#about">理念</a>
@@ -223,6 +232,25 @@
     </figure>
   </section>
 
+  <!-- 最新消息：新的放最上面，保留最近 3～5 則 -->
+  <section id="news" class="sec" aria-labelledby="news-title">
+    <h2 id="news-title" class="sec-title">最新消息</h2>
+    <ul class="news">
+      <li>
+        <time datetime="2026-09-15">2026.09.15</time>
+        <div><h3>官網新增「常見問題」</h3><p>杯套號碼牌、訂購取茶、外送付款的規則，<a href="#faq">一次看懂</a>。</p></div>
+      </li>
+      <li>
+        <time datetime="2026-09-15">2026.09.15</time>
+        <div><h3>外送可預約 4 週內的日期</h3><p>週一、週三到週五外送，送達時段 11:00–16:00，<a href="https://order.feedomuseum.com/">線上預約</a>。</p></div>
+      </li>
+      <li>
+        <time datetime="2026-09-15">2026.09.15</time>
+        <div><h3>狗狗杯套登記規則更新</h3><p>同一個 LINE 帳號登記後 3 日內不能再登記；憑條碼到店即可購買，不限本人。</p></div>
+      </li>
+    </ul>
+  </section>
+
   <!-- 今日版面：各子網站入口 -->
   <section id="editions" class="sec" aria-labelledby="editions-title">
     <h2 id="editions-title" class="sec-title">今日版面</h2>
@@ -237,7 +265,7 @@
       </a>
       <a class="ed" href="https://claim.feedomuseum.com/">
         <span class="ed-ic" aria-hidden="true">🎟</span>
-        <div><h3>狗狗杯套登記號碼牌</h3><p>每日登記制，領取號碼牌才有當日購買資格。憑條碼到店購買。</p></div>
+        <div><h3>狗狗杯套登記號碼牌</h3><p>開放時線上登記，領取號碼牌才有購買資格。當日憑條碼到店購買。</p></div>
       </a>
       <a class="ed" href="https://pet.feedomuseum.com/">
         <span class="ed-ic" aria-hidden="true">🐾</span>
@@ -313,7 +341,7 @@
           <li><time>2026.04.01</time><span>第一款 Moby 自家設計商品，從草圖到成品耗時半年</span><img class="tl-img" src="images/moby-sketch.jpg" alt="Moby 娃娃的設計草圖" width="495" height="700" loading="lazy"></li>
           <li><time>2026.06.19</time><span>狗狗杯套門市發售，同步推出穿衣服限定版（共四色）與拍貼紀念照活動</span></li>
           <li><time>2026.08.15</time><span>Moby 手繪插畫貼紙首發</span></li>
-          <li class="soon"><time>2026.09 中旬</time><span>新一批 Moby 即將到貨</span></li>
+          <li class="soon"><time>準備中</time><span>新一批 Moby 即將到貨，日期確定後會在 Instagram 公告</span></li>
         </ol>
         <p class="moby-tag">帶著 Moby 出門，標記 <a href="https://www.instagram.com/feedomuseum">@feedomuseum</a>，你的街拍可能登上下一期 Feedo Times。</p>
       </div>
@@ -470,6 +498,7 @@
     <a href="https://shop.feedomuseum.com/">限量商店</a>
     <a href="https://photobooth.feedomuseum.com/">拍貼機</a>
     <a href="https://www.instagram.com/feedomuseum">Instagram</a>
+    <a href="privacy.html">隱私權說明</a>
   </nav>
   <p>&copy; <span id="yr">2026</span> FEEDO MUSEUM</p>
 </footer>
