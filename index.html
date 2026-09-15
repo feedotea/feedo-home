@@ -124,6 +124,11 @@
   .philo h3{font-size:20px;font-weight:900;color:var(--stamp);}
   .philo p{font-size:15.5px;color:var(--ink-2);}
 
+  .motto{font-weight:900;font-size:clamp(24px,4.4vw,34px);line-height:1.5;text-align:center;margin:0 auto 18px;}
+  .feature{border:1.5px solid var(--ink);background:var(--paper-2);padding:18px 20px;margin-bottom:22px;}
+  .feature h3{font-size:20px;font-weight:900;color:var(--stamp);}
+  .feature p{color:var(--ink-2);margin-top:4px;}
+
   /* ===== Moby ===== */
   .moby{display:grid;gap:28px;align-items:center;}
   @media(min-width:760px){.moby{grid-template-columns:240px 1fr;gap:48px;}}
@@ -132,7 +137,16 @@
   .profile div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 10px;text-align:center;}
   .profile dt{font-size:14px;color:var(--mute);}
   .profile dd{font-weight:900;font-size:19px;line-height:1.4;}
+  @media(max-width:480px){.profile div{padding:10px 6px;}.profile dd{font-size:16px;white-space:nowrap;}}
   .moby p{color:var(--ink-2);}
+  .timeline{list-style:none;margin:16px 0;border-left:2px solid var(--ink);padding-left:16px;}
+  .timeline li{position:relative;padding:6px 0;}
+  .timeline li::before{content:"";position:absolute;left:-22px;top:15px;width:10px;height:10px;background:var(--stamp);border-radius:50%;}
+  .timeline time{display:block;font-family:var(--data);font-size:14px;color:var(--stamp);}
+  .timeline span{color:var(--ink-2);}
+  .moby-tag{margin-top:6px;}
+  .timeline li.soon span{color:var(--ink);font-weight:900;}
+  .timeline li.soon::before{background:var(--paper);border:2px solid var(--stamp);}
 
   /* ===== 來店資訊 ===== */
   .visit{display:grid;gap:26px;}
@@ -159,7 +173,7 @@
     <nav class="nav" aria-label="主選單">
       <a href="#editions">版面</a>
       <a href="#teas">本期茶單</a>
-      <a href="#about">關於</a>
+      <a href="#about">理念</a>
       <a href="#moby">Moby</a>
       <a href="#visit">來店</a>
       <a class="nav-cta" href="https://order.feedomuseum.com/">飲品訂購 &rarr;</a>
@@ -218,6 +232,10 @@
   <!-- 茶單精選 -->
   <section id="teas" class="sec" aria-labelledby="teas-title">
     <h2 id="teas-title" class="sec-title">本期茶單</h2>
+    <div class="feature">
+      <h3>招牌奶蓋</h3>
+      <p>不用奶蓋粉。以奶油乳酪為基底，加一點鹽提味，低溫打發出剛剛好的滑順；鹹甜的對比，讓茶的風味更清亮。</p>
+    </div>
     <div class="teas">
       <article class="tea"><h3>青心烏龍</h3><span class="price">$60</span><p>高山上，清冷的花香</p></article>
       <article class="tea"><h3>四季春烏龍</h3><span class="price">$50</span><p>奔放的梔子花香，尾韻帶焦糖甜</p></article>
@@ -232,14 +250,15 @@
     </div>
   </section>
 
-  <!-- 關於 -->
+  <!-- 品牌理念 -->
   <section id="about" class="sec" aria-labelledby="about-title">
-    <h2 id="about-title" class="sec-title">關於 FEEDO</h2>
-    <p class="about-text">好茶需要時間，好的日常也是。FEEDO 用台灣烏龍記錄每一種溫度，再把斑點狗 Moby 印進杯套與提袋，讓每一杯茶，都值得被收藏。</p>
+    <h2 id="about-title" class="sec-title">品牌理念</h2>
+    <blockquote class="motto">用最理性的座標，<br>餵養最感性的日常。</blockquote>
+    <p class="about-text">每支茶的沖泡時間與溫度都不同。我們沒有自動煮茶機，在時間、溫度與水之間，用手感一次次調出「剛剛好」的比例。</p>
     <ul class="philo">
-      <li><h3>台灣烏龍</h3><p>從清香到重焙，每一種溫度都有</p></li>
-      <li><h3>鮮奶茶</h3><p>茶香遇上鮮奶，溫柔地收尾</p></li>
-      <li><h3>Moby 周邊</h3><p>杯套與提袋，把今天帶回家</p></li>
+      <li><h3>時間</h3><p>依發酵與揉捻，細細加減沖泡時間</p></li>
+      <li><h3>溫度</h3><p>每支茶，都有自己剛剛好的溫度</p></li>
+      <li><h3>水</h3><p>用手感調出比例，不交給機器</p></li>
     </ul>
   </section>
 
@@ -254,7 +273,15 @@
           <div><dt>體重</dt><dd>8 kg</dd></div>
           <div><dt>興趣</dt><dd>玩耍、奔跑</dd></div>
         </dl>
-        <p>Moby 是 FEEDO 的斑點狗主編。帶著 Moby 提袋出門，標記 <a href="https://www.instagram.com/feedomuseum">@feedomuseum</a>，你的街拍可能登上下一期 Feedo Times。</p>
+        <p>Moby 是我們家的狗狗。什麼都好奇、什麼都想聞聞看，主人在哪都要跟在腳邊。</p>
+        <ol class="timeline">
+          <li><time>2025.03.20</time><span>Moby 出生</span></li>
+          <li><time>2026.04.01</time><span>第一款 Moby 自家設計商品，從草圖到成品耗時半年</span></li>
+          <li><time>2026.06.19</time><span>狗狗杯套門市發售，同步推出穿衣服限定版（共四色）與拍貼紀念照活動</span></li>
+          <li><time>2026.08.15</time><span>Moby 手繪插畫貼紙首發</span></li>
+          <li class="soon"><time>2026.09 中旬</time><span>新一批 Moby 即將到貨</span></li>
+        </ol>
+        <p class="moby-tag">帶著 Moby 出門，標記 <a href="https://www.instagram.com/feedomuseum">@feedomuseum</a>，你的街拍可能登上下一期 Feedo Times。</p>
       </div>
     </div>
   </section>
