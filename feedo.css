@@ -15,14 +15,14 @@
   .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 12px;z-index:200;}
   .skip:focus{left:8px;}
 
-  /* ===== 報紙容器：深色桌面上的一張紙 ===== */
-  .gazette{max-width:1000px;margin:0 auto;background:var(--paper);
-    background-image:radial-gradient(circle at 18% 12%,rgba(120,100,60,.08),transparent 40%),radial-gradient(circle at 85% 78%,rgba(90,70,40,.10),transparent 45%);
+  /* ===== 報紙容器：深色桌面上的一張紙 =====
+     噪點直接疊在 .gazette 自己的 background 裡。原本是一層 mix-blend-mode:multiply
+     的 ::before，在很長的頁面上快速捲動時會整片重繪失敗變成深色。 */
+  .gazette{max-width:1000px;margin:0 auto;background-color:var(--paper);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+      radial-gradient(circle at 18% 12%,rgba(120,100,60,.08),transparent 40%),
+      radial-gradient(circle at 85% 78%,rgba(90,70,40,.10),transparent 45%);
     box-shadow:0 0 60px rgba(0,0,0,.5);position:relative;}
-  /* 紙張噪點 */
-  .gazette::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-    mix-blend-mode:multiply;opacity:.5;}
   .gazette > *{position:relative;z-index:2;}
   .wrap{padding-inline:46px;}
   @media(max-width:680px){.wrap{padding-inline:22px;}}
@@ -199,6 +199,19 @@
     .nav .nav-cta{grid-column:1/-1;border:none;}
     .btns .btn{flex:1 1 auto;justify-content:center;}
   }
+
+  /* ===== 商業合作（cooperation.html） ===== */
+  .coop-steps{max-width:640px;margin-inline:auto;}
+  .coop-steps time{font-size:15px;font-weight:700;}
+  .brief{display:grid;gap:0 44px;border-top:2px solid var(--ink);max-width:820px;margin-inline:auto;}
+  @media(min-width:720px){.brief{grid-template-columns:1fr 1fr;}}
+  .brief > div{padding:16px 0;border-bottom:1px dotted #9a907f;}
+  .brief dt{font-size:18px;font-weight:900;}
+  .brief dd{font-size:15.5px;color:var(--ink-2);margin-top:2px;}
+  .coop-note{margin-top:22px;font-size:15px;color:var(--ink-2);}
+  .coop-note a{border-bottom:1px solid var(--stamp);}
+  /* 首頁「今日版面」最後一張橫跨兩欄的商業合作卡 */
+  .ed-wide{grid-column:1/-1;}
 
   /* ===== 來店資訊 ===== */
   .visit{display:grid;gap:26px;}
