@@ -1,0 +1,222 @@
+/* FEEDO MUSEUM 官網共用樣式（index / faq / story 共用，改這裡三頁一起變）
+   視覺跟訂購站 order.feedomuseum.com 的 style.css 同一套：深色底上的一張報紙。 */
+  :root{
+    --paper:#e9e2cf; --paper-2:#f1ead8; --ink:#1c1813; --ink-2:#39322a; --mute:#6b6153; --stamp:#6e2415; --rule:#1c1813;
+    --desk:#2a261d;
+    --display:'Playfair Display',Didot,'Times New Roman',serif;
+    --data:'Special Elite','Courier New',monospace;
+    --body:'Noto Serif TC','Old Standard TT','Songti TC',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--desk);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 12px;z-index:200;}
+  .skip:focus{left:8px;}
+
+  /* ===== 報紙容器：深色桌面上的一張紙 ===== */
+  .gazette{max-width:1000px;margin:0 auto;background:var(--paper);
+    background-image:radial-gradient(circle at 18% 12%,rgba(120,100,60,.08),transparent 40%),radial-gradient(circle at 85% 78%,rgba(90,70,40,.10),transparent 45%);
+    box-shadow:0 0 60px rgba(0,0,0,.5);position:relative;}
+  /* 紙張噪點 */
+  .gazette::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;opacity:.5;}
+  .gazette > *{position:relative;z-index:2;}
+  .wrap{padding-inline:46px;}
+  @media(max-width:680px){.wrap{padding-inline:22px;}}
+
+  /* ===== 報頭 ===== */
+  .top{padding-top:0;}
+  .meta-row{display:flex;justify-content:space-between;align-items:center;gap:12px;
+    font-family:var(--data);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--ink-2);padding:14px 0 6px;}
+  .mast-wrap{text-align:center;border-top:3px double var(--rule);border-bottom:3px double var(--rule);padding:10px 0 14px;position:relative;}
+  .mast{font-family:var(--display);font-weight:900;font-size:clamp(44px,9vw,104px);line-height:.9;letter-spacing:1px;text-align:center;}
+  .mast-sub{font-family:var(--body);font-style:italic;font-size:clamp(11px,2vw,15px);letter-spacing:3px;text-transform:uppercase;margin-top:8px;}
+  /* 報頭右下角的斑點狗，跟訂購站同一隻 */
+  .mast-dog{position:absolute;right:-1%;bottom:-10px;width:clamp(64px,9vw,100px);z-index:5;
+    animation:dogIn 1s cubic-bezier(.2,1.1,.3,1) both,dogBob 4s ease-in-out 1s infinite;}
+  .mast-dog img{width:100%;display:block;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));}
+  @keyframes dogIn{0%{opacity:0;transform:scale(.4) translateY(20px) rotate(-8deg);}100%{opacity:1;transform:none;}}
+  @keyframes dogBob{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-7px) rotate(2deg);}}
+  @media(prefers-reduced-motion:reduce){.mast-dog{animation:none;}}
+  @media(max-width:680px){
+    .mast-dog{width:58px;right:0;bottom:-2px;}
+    .mast{padding-right:54px;}
+    .mast-sub{padding-right:62px;letter-spacing:1.5px;font-size:10.5px;}
+    .meta-row{font-size:9px;letter-spacing:.4px;}
+  }
+
+  /* ===== 選單：中文、看得清楚，兩站同一套（其餘維持報紙視覺） ===== */
+  /* 不吸頂：維持原本的行為（.gazette > * 的 position:relative 本來就會蓋掉 sticky） */
+  .nav{background:var(--paper);color:var(--ink);
+    display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:4px 22px;
+    border-bottom:1px solid var(--rule);padding:10px 46px;}
+  .nav a{color:var(--ink);text-decoration:none;font-family:var(--body);font-size:15px;
+    padding:8px 2px;border-bottom:2px solid transparent;transition:.15s;}
+  .nav a:hover{border-color:var(--ink);}
+  .nav a[aria-current="page"]{border-color:var(--ink);}
+  .nav .nav-cta{background:var(--ink);color:var(--paper);padding:8px 16px;border:none;}
+  .nav .nav-cta:hover{background:var(--stamp);}
+  .nav .nav-cta[aria-current="page"]{border-color:transparent;}
+
+  /* ===== 共用 ===== */
+  .sec{padding:48px 0;border-bottom:1px solid var(--rule);}
+  /* 區塊標題：紅色英文小標＋大標，跟訂購站的 sec-banner 同一套 */
+  .sec-kicker{display:block;font-family:var(--data);font-size:11px;letter-spacing:4px;
+    text-transform:uppercase;color:var(--stamp);text-align:center;margin-bottom:6px;}
+  .sec-title{font-weight:900;font-size:clamp(26px,4.4vw,36px);line-height:1.3;text-align:center;margin-bottom:28px;}
+  .btn{display:inline-flex;align-items:center;min-height:48px;font-size:16px;text-decoration:none;padding:10px 22px;border:2px solid var(--ink);transition:.15s;}
+  .btn:hover{background:var(--ink);color:var(--paper);}
+  .btn.pri{background:var(--ink);color:var(--paper);}
+  .btn.pri:hover{background:var(--stamp);border-color:var(--stamp);}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .btns.center{justify-content:center;}
+  .photo{filter:grayscale(1) contrast(1.05);}
+
+  /* ===== 頭版：跟訂購站的頭版頭條同一套（置中大標＋雙線＋整幅照片） ===== */
+  .lead{padding:24px 0 32px;border-bottom:1px solid var(--rule);}
+  .lead .kicker{text-align:center;font-family:var(--data);font-size:12px;letter-spacing:5px;
+    text-transform:uppercase;color:var(--stamp);margin-bottom:10px;}
+  .lead h2{text-align:center;font-weight:900;font-size:clamp(28px,7vw,56px);line-height:1.25;}
+  .lead h2::after{content:"";display:block;border-top:2px solid var(--rule);margin:16px 0 4px;}
+  .lead h2+.deck::before{content:"";display:block;border-top:1px solid var(--rule);margin:0 0 18px;}
+  .nb{white-space:nowrap;}
+  .deck{text-align:center;margin:0 auto;font-size:17px;color:var(--ink-2);max-width:620px;}
+  .lead .btns{justify-content:center;}
+  .lead-fig{border:1px solid var(--rule);background:var(--paper-2);padding:7px;margin-top:22px;}
+  .lead-fig img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 60%;filter:grayscale(1) contrast(1.08);}
+  @media(max-width:560px){.lead-fig img{aspect-ratio:4/3;}}
+
+  /* ===== 最新消息 ===== */
+  .news{list-style:none;max-width:760px;margin:0 auto;border-top:2px solid var(--ink);}
+  .news li{display:grid;grid-template-columns:110px 1fr;gap:4px 18px;padding:16px 0;border-bottom:1px dotted #9a907f;}
+  @media(max-width:560px){.news li{grid-template-columns:1fr;}}
+  .news time{font-family:var(--data);font-size:14px;color:var(--stamp);padding-top:3px;}
+  .news h3{font-size:18px;font-weight:900;line-height:1.5;}
+  .news p{font-size:15.5px;color:var(--ink-2);margin-top:2px;}
+
+  /* ===== 今日版面 ===== */
+  .editions{display:grid;gap:14px;}
+  @media(min-width:640px){.editions{grid-template-columns:1fr 1fr;}}
+  .ed{position:relative;display:flex;align-items:flex-start;gap:14px;padding:22px 48px 22px 20px;border:1.5px solid var(--ink);background:var(--paper-2);text-decoration:none;transition:transform .15s,box-shadow .15s;}
+  .ed:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+  .ed:focus-visible{outline:3px solid var(--stamp);outline-offset:3px;}
+  .ed-ic{font-size:28px;line-height:1.2;flex:0 0 auto;}
+  .ed h3{font-weight:900;font-size:21px;line-height:1.4;}
+  .ed p{font-size:15.5px;line-height:1.65;color:var(--ink-2);margin-top:4px;}
+  .ed::after{content:"→";position:absolute;right:18px;top:22px;font-family:var(--data);font-size:18px;}
+  .ed-main{background:var(--ink);color:var(--paper);}
+  .ed-main p{color:#D9D4C5;}
+  .ed-main:hover{box-shadow:5px 5px 0 var(--stamp);}
+
+  /* ===== 茶單 ===== */
+  .teas{display:grid;gap:0 44px;border-top:2px solid var(--ink);}
+  @media(min-width:720px){.teas{grid-template-columns:1fr 1fr;}}
+  .tea{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2px 12px;padding:16px 0;border-bottom:1px dotted #9a907f;}
+  .tea h3{font-size:19px;font-weight:900;}
+  .tea .price{font-family:var(--data);font-size:17px;}
+  .tea p{grid-column:1/-1;font-size:15.5px;color:var(--ink-2);}
+
+  /* ===== 關於 ===== */
+  /* 時間／溫度／水：跟「本期茶單」同一套節奏，避免品牌理念自成一格 */
+  .philo{display:grid;gap:0 44px;border-top:2px solid var(--ink);margin-top:28px;}
+  @media(min-width:720px){.philo{grid-template-columns:1fr 1fr;}}
+  .philo .tea h3{color:var(--stamp);}
+
+  .motto{font-weight:900;font-size:clamp(24px,4.4vw,34px);line-height:1.5;text-align:center;margin:0 auto 26px;}
+  .feature{border:1.5px solid var(--ink);background:var(--paper-2);padding:18px 20px;margin-bottom:22px;}
+  .feature h3{font-size:20px;font-weight:900;color:var(--stamp);}
+  .feature p{color:var(--ink-2);margin-top:4px;}
+  .feature .feature-quote{margin-top:10px;font-weight:600;color:var(--ink);}
+  .feature.has-img{display:grid;gap:14px 20px;align-items:center;}
+  @media(min-width:560px){.feature.has-img{grid-template-columns:150px 1fr;}}
+  .feature-img{width:100%;max-width:150px;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--ink);}
+
+  /* ===== Moby ===== */
+  .moby{display:grid;gap:28px;align-items:center;}
+  @media(min-width:760px){.moby{grid-template-columns:240px 1fr;gap:48px;}}
+  .moby-img{max-width:220px;width:100%;justify-self:center;}
+  /* 用 flex，欄數跟著實際項目走，不會留空格 */
+  .profile{display:flex;border-top:1px solid var(--ink);border-left:1px solid var(--ink);margin-bottom:20px;}
+  .profile div{flex:1 1 0;min-width:0;}
+  .profile div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 10px;text-align:center;}
+  .profile dt{font-size:14px;color:var(--mute);}
+  .profile dd{font-weight:900;font-size:19px;line-height:1.4;}
+  @media(max-width:480px){.profile div{padding:10px 6px;}.profile dd{font-size:16px;white-space:nowrap;}}
+  .moby p{color:var(--ink-2);}
+  .timeline{list-style:none;margin:16px 0;border-left:2px solid var(--ink);padding-left:16px;}
+  .timeline li{position:relative;padding:6px 0;}
+  .timeline li::before{content:"";position:absolute;left:-22px;top:15px;width:10px;height:10px;background:var(--stamp);border-radius:50%;}
+  .timeline time{display:block;font-family:var(--data);font-size:14px;color:var(--stamp);}
+  .timeline span{color:var(--ink-2);}
+  .moby-tag{margin-top:6px;}
+  .timeline li.soon span{color:var(--ink);font-weight:900;}
+  .timeline li.soon::before{background:var(--paper);border:2px solid var(--stamp);}
+  .tl-img{width:120px;margin-top:8px;border:1px solid var(--ink);}
+
+  /* ===== 常見問題 ===== */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-group+.faq-group{margin-top:36px;}
+  .faq-group h3{font-family:var(--data);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--stamp);border-bottom:2px solid var(--ink);padding-bottom:6px;}
+  .faq details{border-bottom:1px dotted #9a907f;}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;font-weight:900;font-size:18px;line-height:1.5;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";font-family:var(--data);font-weight:400;font-size:20px;flex:0 0 auto;}
+  .faq details[open] summary::after{content:"−";}
+  .faq summary:focus-visible{outline:3px solid var(--stamp);outline-offset:2px;}
+  .faq .ans{padding-bottom:16px;font-size:16px;color:var(--ink-2);}
+  .faq .ans p+p{margin-top:6px;}
+  .tiers-t{width:100%;border-collapse:collapse;margin:8px 0;font-size:15px;}
+  .tiers-t th,.tiers-t td{text-align:left;padding:6px 8px 6px 0;border-bottom:1px dotted #9a907f;}
+  .tiers-t th{font-weight:600;font-size:14px;color:var(--mute);}
+  .tiers-t td:nth-child(2){font-family:var(--data);white-space:nowrap;}
+
+  /* ===== 分頁共用（faq / 其他內頁） ===== */
+  .mast-link{display:block;text-decoration:none;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+  .page-head{padding-bottom:0;border-bottom:none;}
+  .page-deck{max-width:34em;margin:0 auto;text-align:center;color:var(--ink-2);font-size:17px;}
+  .ask{max-width:520px;margin:0 auto;}
+  .faq-group h2{font-family:var(--data);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--stamp);border-bottom:2px solid var(--ink);padding-bottom:6px;}
+
+  /* ===== 專欄短文（為什麼是台灣烏龍） ===== */
+  .column{max-width:38em;margin:0 auto;color:var(--ink-2);font-size:17px;}
+  .column p+p{margin-top:14px;}
+  .sec-deck{max-width:30em;margin:-14px auto 24px;text-align:center;font-size:15.5px;color:var(--mute);}
+
+  /* ===== 版面卡片狀態標籤 ===== */
+  .ed-flag{display:inline-block;margin-left:8px;padding:1px 8px;border:1px solid var(--stamp);color:var(--stamp);font-family:var(--data);font-size:12px;vertical-align:middle;}
+  .ed-main .ed-flag{border-color:var(--paper);color:var(--paper);}
+
+  /* ===== 手機版選單：三欄格線，一格一個點擊區 ===== */
+  @media(max-width:600px){
+    .nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:12px 22px;}
+    .nav a{text-align:center;padding:11px 4px;font-size:14px;border-bottom:1px solid rgba(28,24,19,.25);}
+    .nav a[aria-current="page"]{border-bottom-color:var(--ink);}
+    .nav .nav-cta{grid-column:1/-1;border:none;}
+    .btns .btn{flex:1 1 auto;justify-content:center;}
+  }
+
+  /* ===== 來店資訊 ===== */
+  .visit{display:grid;gap:26px;}
+  @media(min-width:820px){.visit{grid-template-columns:1fr 1fr;}}
+  .vrow{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:13px 0;border-bottom:1px dotted #9a907f;}
+  .vk{font-weight:600;color:var(--stamp);}
+  .vrow a{display:inline-block;padding:4px 0;margin:-4px 0;}
+  .map{border:1.5px solid var(--ink);background:var(--paper-2);min-height:320px;}
+  .map iframe{display:block;width:100%;height:100%;min-height:320px;border:0;filter:grayscale(.55) contrast(1.05);}
+  .visit-fig{margin-top:26px;max-width:320px;border:1px solid var(--rule);}
+
+  /* ===== 報尾 ===== */
+  .foot{padding-block:24px 10px;text-align:center;font-size:15px;color:var(--ink-2);}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 20px;margin-bottom:10px;}
+  .foot-links a{display:inline-block;color:var(--ink);padding:10px 2px;font-family:var(--data);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
+  .foot-links a:hover{color:var(--stamp);}
+  .foot p{font-family:var(--data);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);}
+  .colophon{text-align:center;font-family:var(--data);font-size:10px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--ink-2);border-top:3px double var(--rule);
+    margin:0 46px;padding:18px 0 28px;}
+  @media(max-width:680px){.colophon{margin-inline:22px;letter-spacing:1px;}}
