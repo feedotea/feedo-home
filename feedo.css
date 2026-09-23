@@ -232,6 +232,13 @@
   .foot-links a{display:inline-block;color:var(--ink);padding:10px 2px;font-family:var(--data);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
   .foot-links a:hover{color:var(--stamp);}
   .foot p{font-family:var(--data);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);}
+  /* 防詐提醒。跟著報尾出現在每一頁 —— 顧客不會特地去找這種資訊，
+     要在他本來就會滑到的地方。不用警告色，那會讓整張報紙變得緊張；
+     這裡要的是「看過、記得」，不是「嚇一跳」。
+     specificity 要壓過上面那條 .foot p，否則會被吃成全大寫加寬字距。 */
+  .foot p.foot-warn{font-size:11.5px;line-height:1.95;letter-spacing:.4px;
+    text-transform:none;max-width:33em;margin:0 auto 14px;}
+  .foot p.foot-warn b{color:var(--ink);font-weight:700;}
   .colophon{text-align:center;font-family:var(--data);font-size:10px;letter-spacing:2px;
     text-transform:uppercase;color:var(--ink-2);border-top:3px double var(--rule);
     margin:0 46px;padding:18px 0 28px;}
